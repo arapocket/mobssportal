@@ -1,3 +1,5 @@
+var db = require('./db');
+
 module.exports.renderHome = function (callback) {
     db.createConnection(function (err, result) {
         if (err) {

@@ -1,0 +1,19 @@
+include mixins
+
+doctype
+html
+	head
+		title Command Center 5.0
+		meta( charset='utf-8' )
+		meta( http-equiv='X-UA-Compatible', content='IE=edge' )
+		meta( name='viewport', content='width=device-width, initial-scale=1.0' )
+		script(src='https://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
+		script( src='/bootstrap/js/bootstrap.min.js' )
+		
+		//- Bootswatch Theme
+		link(href="/bootstrap/css/bootstrap.min.css", rel="stylesheet")
+	
+   
+	body(style="padding-bottom:10rem;")
+		.container   
+			block content
