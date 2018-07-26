@@ -1,0 +1,22 @@
+include mixins
+doctype
+html
+	head
+		title Command Center 5.0
+		script(src='https://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
+		script( src='/bootstrap/js/bootstrap.min.js' )
+		link(href="/bootstrap/css/bootstrap.min.css", rel="stylesheet")
+
+	body(style="padding-bottom:10rem;")
+		.container
+			block content
+				include navbar
+				br
+				div
+				.row
+					.jumbotron
+						.row
+							.col-md-9
+								h2(id='header') Mobss Customer Portal
+								p(id='comment') Customer: #{getUserResult}
+

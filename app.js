@@ -3,7 +3,7 @@ var helmet = require('helmet')
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var path = require('path');
-
+var cookieParser = require('cookie-parser');
 
 var https = require("https")
 var http = require("http")
@@ -57,6 +57,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: 1024 * 1024 * 20, type: '
 //app.use(bodyParser.json({limit:1024*1024*20, type:'application/json'}));
 //--> works for verify records not for log-in  app.use(bodyParser.urlencoded({ extended:true,limit:1024*1024*20,type:'application/x-www-form-urlencoding'}));
 
+app.use(cookieParser());
 app.use(require('stylus').middleware(__dirname + '/public'));
 // feb-- .lc processing.  this line has to go BEFORE the app.use(express.static) line, or it doesnt run the engine.
 // feb-- tried to do this through the router but couldnt get it to work
