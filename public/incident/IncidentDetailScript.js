@@ -65,6 +65,7 @@ function initScript() {
                 console.log(endpoint)
                 xhr.open("DELETE", endpoint, true);
                 xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.setRequestHeader('Access-Control-Allow-Origin', serverAddress);
                 xhr.send(null);
             }
         });
