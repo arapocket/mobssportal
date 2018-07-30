@@ -5,6 +5,8 @@ var router = express.Router();
 var LoginController = require('../controllers/LoginController');
 var PortalController = require('../controllers/PortalController');
 var IncidentController = require('../controllers/IncidentController');
+var SuggestionController = require('../controllers/SuggestionController');
+
 router.get('/', LoginController.renderHome);
 router.get('/portal', LoginController.renderPortal);
 router.post('/', LoginController.renderPortal);
