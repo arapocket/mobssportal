@@ -97,7 +97,7 @@ module.exports.authenticateUser = function (user, password, callback) {
 
 							sess.userType = result[0].PrivLevel
 							console.log('success');
-							callback(null, result[0].ClientName);
+							callback(null, result[0].CompanyName);
 						} else {
 							callback('Authentication_fail_status', null);
 						}

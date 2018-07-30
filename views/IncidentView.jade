@@ -8,11 +8,11 @@ block content
             div
                 form.form-horizontal(method='post')
                     fieldset
-                        legend New Work Order
+                        legend New Incident
                         .form-group
-                            label.col-lg-2.control-label(for='subject') Work Order Subject
+                            label.col-lg-2.control-label(for='subject') Incident Subject
                             .col-lg-10
-                                select#subject.form-control(name='Subject')
+                                select#subject.form-control(name='Subject' required='')
                                     option(id = 'dropdown 0' selected='' value='') Choose...
                                     option(id = 'dropdown 1' value='Mobss Device') Mobss Device
                                     option(id = 'dropdown 2' value='Mobss Cloud') Mobss Cloud
@@ -23,20 +23,8 @@ block content
                             .col-lg-10
                                 textarea#description.form-control(rows='3', name='Description' required='')
                         .form-group
-                            label.col-lg-2.control-label(for='contactName') Contact Name
-                            .col-lg-10
-                                input#contactName.form-control(type='text', placeholder='', name='ContactName' required='')
-                        .form-group
-                            label.col-lg-2.control-label(for='contactPhone') Contact Phone
-                            .col-lg-10  
-                                input#contactPhone.form-control(type='text', placeholder='', name='ContactPhone' required='')
-                        .form-group
-                            label.col-lg-2.control-label(for='contactEmail') Contact Email
-                            .col-lg-10  
-                                input#contactEmail.form-control(type='text', placeholder='', name='ContactEmail' required='')
-                        .form-group
                           .col-lg-10.col-lg-offset-2
-                            button#nextButton.btn.btn-primary.btn-lg(type = 'submit') Next
+                            button#nextButton.btn.btn-primary.btn-lg(type = 'submit') Submit
                         link(rel='stylesheet', href='/jqueryui/jquery-ui.css')
                         link(rel='stylesheet', href='/jqueryui/jquery.timepicker.css')
                         script(src='/jqueryui/jquery.timepicker.min.js')

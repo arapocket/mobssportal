@@ -1,0 +1,52 @@
+include mixins
+extends layout
+block content   
+
+            include navbar
+
+            div
+                form.form-horizontal(method='post')
+                    fieldset
+                        legend Edit Incident
+                        .form-group
+                            label.col-lg-2.control-label(for='orderid') Incident ID
+                            .col-lg-10
+                                input#orderid.form-control(type='text', value =result[0].IncidentID , name='IncidentID' required='' disabled = '')
+                        .form-group
+                            label.col-lg-2.control-label(for='status') Status
+                            .col-lg-10  
+                                input#status.form-control(type='text', value =result[0].Status, name='status' required='' disabled = '')
+                        .form-group(style = 'display: block')
+                            label.col-lg-2.control-label(for='subject') Incident Subject
+                            .col-lg-10
+                                select#subject.form-control(name='Subject' disabled = '' ) 
+                                    option(id = 'Choose' value='') Choose...
+                                    option(id = 'Mobss Device' value='Mobss Device') Mobss Device
+                                    option(id = 'Mobss Cloud' value='Mobss Cloud') Mobss Cloud
+                                    option(id = 'Mobss Database' value='Mobss Database') Mobss Database
+                                    option(id = 'Other' value='Other') Other
+                        .form-group
+                            label.col-lg-2.control-label(for='description') Description
+                            .col-lg-10
+                                textarea#description.form-control(name='Description' required='' disabled ='' value= result[0].Description)= result[0].Description
+                        .form-group
+                          .col-lg-2.col-lg-offset-2
+                            button#editButton.btn.btn-primary.btn-lg.btn-block(type = 'button') Edit
+                          .col-lg-2
+                            button#deleteButton.btn.btn-danger.btn-lg.btn-block(type = 'button') Delete
+                        link(rel='stylesheet', href='/jqueryui/jquery-ui.css')
+                        link(rel='stylesheet', href='/jqueryui/jquery.timepicker.css')
+                        script(src='/jqueryui/jquery.timepicker.min.js')
+                        script(src='/jqueryui/jquery-ui.js')
+                        script(src='/incident/IncidentDetailScript.js')
+                        script( src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js')                        
+                        script.
+                            var result = !{ JSON.stringify(result[0])};
+                            var serverAddress = !{ JSON.stringify(serverAddress)};
+                            initScript();
+                            $( function() {
+                            $( "#timepicker" ).timepicker({timeFormat : "H:i:s"});
+                            } );
+                            $( function() {
+                            $( "#datepicker" ).datepicker({dateFormat: "yy-mm-dd"});
+                            } );

@@ -1,0 +1,32 @@
+include mixins
+extends layout
+block content   
+			include navbar
+			h3 All Incidents
+			br
+			div
+				table#pickle.table.table-hover.table-striped.table-bordered
+					thead
+						tr.primary 
+							th
+							th Subject
+							th Time Posted
+							th Status
+					tbody
+						-each result in getAllIncidentsResult
+							tr
+									td
+										a(href="/incident/#{result.IncidentID}")  View/Edit
+									td=result.Subject
+									td=result.TimePosted
+									td=result.Status
+				script.
+					$(document).ready(function() {
+					$('#pickle tr').click(function() {
+					var href = $(this).find("a").attr("href");
+						if(href) {
+							window.location = href;
+						}
+					});
+					});
+		   

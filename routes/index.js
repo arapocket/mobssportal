@@ -4,12 +4,17 @@ var router = express.Router();
 
 var LoginController = require('../controllers/LoginController');
 var PortalController = require('../controllers/PortalController');
-var WorkOrderController = require('../controllers/WorkOrderController');
+var IncidentController = require('../controllers/IncidentController');
 router.get('/', LoginController.renderHome);
 router.get('/portal', LoginController.renderPortal);
 router.post('/', LoginController.renderPortal);
-router.get('/newworkorder', PortalController.renderNewWorkOrderView);
-router.post('/newworkorder', WorkOrderController.postWorkOrder);
+router.get('/incident', PortalController.renderIncidentView);
+router.get('/incident/:id', IncidentController.renderIncidentDetails);
+router.put('/incident/:id', IncidentController.putIncident);
+router.delete('/incident/:id/:username', IncidentController.deleteIncident)
+router.post('/incident', IncidentController.postIncident);
+router.get('/incidentlist', PortalController.renderIncidentListView);
+
 
 router.get('/logout', function (req, res) {
 	// delete the session variable

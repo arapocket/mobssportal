@@ -1,16 +1,10 @@
 +nav("MOBSS", "dropdown_menu")
     +nav_item("/") Home
-    +nav_item_dropdown("#")(label="Work Orders")
-        +nav_item("/") View Work Orders
-        +nav_item("/newworkorder") New Work Order
-    +nav_item_dropdown("#")(label="Report a Bug")
-        +nav_item("/") All Bug Reports
-        +nav_item("/") New Bug Report
-    +nav_item_dropdown("#")(label="Report an Incident")
-        +nav_item("/") Incident List
-        +nav_item("/") New Incident
+    +nav_item_dropdown("#")(label="Report An Incident")
+        +nav_item("/incidentlist") View All Incidents
+        +nav_item("/incident") New Incident
     +nav_item_dropdown("#")(label="Make a Suggestion")
-        +nav_item("/") Suggestions List
+        +nav_item("/") View Suggestions
         +nav_item("/") New Suggestion
     +nav_item_dropdown("#")(label="Get Support")
         +nav_item("/") Schedule Appointment
