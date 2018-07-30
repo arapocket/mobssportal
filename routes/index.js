@@ -8,12 +8,20 @@ var IncidentController = require('../controllers/IncidentController');
 router.get('/', LoginController.renderHome);
 router.get('/portal', LoginController.renderPortal);
 router.post('/', LoginController.renderPortal);
+
 router.get('/incident', PortalController.renderIncidentView);
 router.get('/incident/:id', IncidentController.renderIncidentDetails);
 router.put('/incident/:id', IncidentController.putIncident);
 router.delete('/incident/:id/:username', IncidentController.deleteIncident)
 router.post('/incident', IncidentController.postIncident);
 router.get('/incidentlist', PortalController.renderIncidentListView);
+
+router.get('/suggestion', PortalController.renderSuggestionView);
+router.get('/suggestion/:id', SuggestionController.renderSuggestionDetails);
+router.put('/suggestion/:id', SuggestionController.putSuggestion);
+router.delete('/suggestion/:id/:username', SuggestionController.deleteSuggestion)
+router.post('/suggestion', SuggestionController.postSuggestion);
+router.get('/suggestionlist', PortalController.renderSuggestionListView);
 
 
 router.get('/logout', function (req, res) {
