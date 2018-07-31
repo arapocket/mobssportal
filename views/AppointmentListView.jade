@@ -1,0 +1,34 @@
+include mixins
+extends layout
+block content   
+			include navbar
+			h3 All Appointments
+			br
+			div
+				table#pickle.table.table-hover.table-striped.table-bordered
+					thead
+						tr.primary 
+							th
+							th Subject
+							th Desired Date/Time
+							th Time Posted
+							th Status
+					tbody
+						-each result in getAllAppointmentsResult
+							tr
+									td
+										a(href="/appointment/#{result.AppointmentID}")  View/Edit
+									td=result.Subject
+									td=result.DesiredDateTime
+									td=result.TimePosted
+									td=result.Status
+				script.
+					$(document).ready(function() {
+					$('#pickle tr').click(function() {
+					var href = $(this).find("a").attr("href");
+						if(href) {
+							window.location = href;
+						}
+					});
+					});
+		   

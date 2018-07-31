@@ -35,7 +35,7 @@ function initScript() {
                 descriptionField.setAttribute('disabled', '')
                 subject.setAttribute('disabled', '');
                 editButton.innerText = 'Edit';
-                incidentPut();
+                suggestionPut();
             } catch (e) {
                 console.log(e);
             }
@@ -57,11 +57,11 @@ function initScript() {
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == XMLHttpRequest.DONE) {
                         console.log(xhr.responseText);
-                        window.location.assign('/incidentlist')
+                        window.location.assign('/suggestionlist')
                     }
                 }
 
-                var endpoint = serverAddress + '/incident/' + result.IncidentID + '/' + result.ClientUsername
+                var endpoint = serverAddress + '/suggestion/' + result.SuggestionID + '/' + result.ClientUsername
                 console.log(endpoint)
                 xhr.open("DELETE", endpoint, true);
                 xhr.setRequestHeader('Content-Type', 'application/json');
@@ -71,7 +71,7 @@ function initScript() {
         });
     });
 
-    function incidentPut() {
+    function suggestionPut() {
 
         var xhr = new XMLHttpRequest();
         if (!xhr) {
@@ -81,13 +81,13 @@ function initScript() {
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState == XMLHttpRequest.DONE) {
-                console.log('incidentPut done');
+                console.log('suggestionPut done');
                 console.log(xhr.responseText);
 
             }
         }
 
-        var endpoint = serverAddress + '/incident/' + result.IncidentID
+        var endpoint = serverAddress + '/suggestion/' + result.SuggestionID
 
         console.log(subject.value);
         console.log(descriptionField.value);

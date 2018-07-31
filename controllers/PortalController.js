@@ -3,6 +3,7 @@ var router = express.Router();
 var UserModel = require('../models/UserModel');
 var IncidentModel = require('../models/IncidentModel')
 var SuggestionModel = require('../models/SuggestionModel')
+var AppointmentModel = require('../models/AppointmentModel')
 
 exports.renderIncidentView = function (req, res) {
 
@@ -62,6 +63,38 @@ exports.renderSuggestionListView = function (req, res) {
             } else {
                 console.log(getAllSuggestionsResult);
                 res.render('SuggestionListView', { getAllSuggestionsResult });
+            }
+        })
+    }
+
+}
+
+exports.renderAppointmentView = function (req, res) {
+
+    sess = req.session;
+    sess.error = null;
+
+    if (typeof sess.username == 'undefined') res.redirect('/');
+        else {
+        res.render('AppointmentView');
+    }
+
+}
+
+exports.renderAppointmentListView = function (req, res) {
+
+    sess = req.session;
+    sess.error = null;
+
+    if (typeof sess.username == 'undefined') res.redirect('/');
+    else {
+        AppointmentModel.getAllAppointments(sess.username, function (err, getAllAppointmentsResult) {
+            if (err) {
+                console.log(err);
+                res.end();
+            } else {
+                console.log(getAllAppointmentsResult);
+                res.render('AppointmentListView', { getAllAppointmentsResult });
             }
         })
     }

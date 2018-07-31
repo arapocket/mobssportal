@@ -6,6 +6,7 @@ var LoginController = require('../controllers/LoginController');
 var PortalController = require('../controllers/PortalController');
 var IncidentController = require('../controllers/IncidentController');
 var SuggestionController = require('../controllers/SuggestionController');
+var AppointmentController = require('../controllers/AppointmentController');
 
 router.get('/', LoginController.renderHome);
 router.get('/portal', LoginController.renderPortal);
@@ -24,6 +25,13 @@ router.put('/suggestion/:id', SuggestionController.putSuggestion);
 router.delete('/suggestion/:id/:username', SuggestionController.deleteSuggestion)
 router.post('/suggestion', SuggestionController.postSuggestion);
 router.get('/suggestionlist', PortalController.renderSuggestionListView);
+
+router.get('/appointment', PortalController.renderAppointmentView);
+router.get('/appointment/:id', AppointmentController.renderAppointmentDetails);
+router.put('/appointment/:id', AppointmentController.putAppointment);
+router.delete('/appointment/:id/:username', AppointmentController.deleteAppointment)
+router.post('/appointment', AppointmentController.postAppointment);
+router.get('/appointmentlist', PortalController.renderAppointmentListView);
 
 
 router.get('/logout', function (req, res) {

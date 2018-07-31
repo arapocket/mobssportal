@@ -35,7 +35,7 @@ function initScript() {
                 descriptionField.setAttribute('disabled', '')
                 subject.setAttribute('disabled', '');
                 editButton.innerText = 'Edit';
-                incidentPut();
+                appointmentPut();
             } catch (e) {
                 console.log(e);
             }
@@ -57,11 +57,11 @@ function initScript() {
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == XMLHttpRequest.DONE) {
                         console.log(xhr.responseText);
-                        window.location.assign('/incidentlist')
+                        window.location.assign('/appointmentlist')
                     }
                 }
 
-                var endpoint = serverAddress + '/incident/' + result.IncidentID + '/' + result.ClientUsername
+                var endpoint = serverAddress + '/appointment/' + result.AppointmentID + '/' + result.ClientUsername
                 console.log(endpoint)
                 xhr.open("DELETE", endpoint, true);
                 xhr.setRequestHeader('Content-Type', 'application/json');
@@ -71,7 +71,7 @@ function initScript() {
         });
     });
 
-    function incidentPut() {
+    function appointmentPut() {
 
         var xhr = new XMLHttpRequest();
         if (!xhr) {
@@ -81,13 +81,13 @@ function initScript() {
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState == XMLHttpRequest.DONE) {
-                console.log('incidentPut done');
+                console.log('appointmentPut done');
                 console.log(xhr.responseText);
 
             }
         }
 
-        var endpoint = serverAddress + '/incident/' + result.IncidentID
+        var endpoint = serverAddress + '/appointment/' + result.AppointmentID
 
         console.log(subject.value);
         console.log(descriptionField.value);
@@ -98,7 +98,7 @@ function initScript() {
         xhr.send(JSON.stringify({
             'ClientUsername': result.ClientUsername,
             'Subject': subject.value,
-            'Description': descriptionField.value,
+            'Comment': descriptionField.value,
             'Status': result.Status
         }));
     }
