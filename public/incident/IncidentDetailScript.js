@@ -26,7 +26,6 @@ function initScript() {
                 console.log(e);
             }
 
-
         } else {
 
             try {

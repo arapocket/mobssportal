@@ -16,6 +16,10 @@ block content
                             label.col-lg-2.control-label(for='status') Status
                             .col-lg-10  
                                 input#status.form-control(type='text', value =result[0].Status, name='status' required='' disabled = '')
+                        .form-group
+                            label.col-lg-2.control-label(for='statusNote') Notes
+                            .col-lg-10
+                                textarea#statusNote.form-control(name='statusNote' required='' disabled ='' value= result[0].StatusNote)= result[0].StatusNote                                
                         .form-group(style = 'display: block')
                             label.col-lg-2.control-label(for='subject') Appointment Subject
                             .col-lg-10

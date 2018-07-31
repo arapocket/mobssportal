@@ -32,13 +32,13 @@ block content
                         .form-group
                           label.col-lg-2.control-label(for='select') Privilege
                           .col-lg-10
-                            select#selecttime.form-control(name='PrivLevel')
+                            select#selecttime.form-control(name='PrivLevel' required='')
                               option User
                               option Administrator  
                         .form-group
                           label.col-lg-2.control-label(for='select') Status
                           .col-lg-10
-                            select.form-control(multiple='', name='Status')
+                            select.form-control(multiple='', name='Status' required='')
                               option Active
                               option Suspended
                               option Inactive

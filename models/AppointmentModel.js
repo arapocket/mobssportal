@@ -66,6 +66,10 @@ module.exports.postAppointment = function (user, Body, callback) {
             var queryValues = '"' + user + '", "' + orderID + '", "' + Body.Subject + '", "' + Body.Comment + '", "' + time + '", "' + dateTime + '")';
             var query = 'INSERT INTO appointment ' + queryFields + ' VALUES (' + queryValues;
 
+
+            console.log('logging query from postAppointment');
+            console.log(query);
+
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -94,7 +98,9 @@ module.exports.putAppointment = function (id, Body, callback) {
 
             var connection = result;
             var orderID = CreateRandom.create();
-            var query = 'UPDATE appointment SET Subject = "' + Body.Subject + '", Comment = "' + Body.Comment + '", UpdateTime = "' + time + '", DesiredDateTime = "' + dateTime + '" WHERE AppointmentID ="' + id + '" AND ClientUsername = "' + Body.ClientUsername + '";'
+            var query = 'UPDATE appointment SET Subject = "' + Body.Subject + '", Comment = "' + Body.Comment + '", StatusNote = "' + Body.StatusNote + '", UpdateTime="' + time + '", DesiredDateTime = "' + dateTime + '" WHERE AppointmentID ="' + id + '" AND ClientUsername = "' + Body.ClientUsername + '";'
+            console.log('logging query from putAppointment');
+            console.log(query);
 
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
