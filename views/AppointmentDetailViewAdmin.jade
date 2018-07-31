@@ -1,0 +1,62 @@
+include mixins
+extends layout
+block content   
+
+            include navbar
+            div
+                form.form-horizontal(method='put')
+                    fieldset
+                        legend Edit Appointment
+                        .form-group
+                            label.col-lg-2.control-label(for='orderid') Appointment ID
+                            .col-lg-10
+                                input#orderid.form-control(type='text', value =result[0].AppointmentID , name='AppointmentID' required='' disabled = '')
+                        .form-group
+                            label.col-lg-2.control-label(for='status') Status
+                            .col-lg-10  
+                                input#status.form-control(type='text', value =result[0].Status, name='status' required='' disabled = '')
+                        .form-group
+                            label.col-lg-2.control-label(for='statusNote') Notes
+                            .col-lg-10
+                                textarea#statusNote.form-control(name='statusNote' required='' disabled ='' value= result[0].StatusNote)= result[0].StatusNote                                
+                        .form-group(style = 'display: block')
+                            label.col-lg-2.control-label(for='subject') Appointment Subject
+                            .col-lg-10
+                                select#subject.form-control(name='Subject' disabled = '' ) 
+                                    option(id = 'Choose' value='') Choose...
+                                    option(id = 'Mobss Device' value='Mobss Device') Mobss Device
+                                    option(id = 'Mobss Cloud' value='Mobss Cloud') Mobss Cloud
+                                    option(id = 'Mobss Database' value='Mobss Database') Mobss Database
+                                    option(id = 'Other' value='Other') Other
+                        .form-group
+                            label.col-lg-2.control-label(for='comment') Comments
+                            .col-lg-10
+                                textarea#comment.form-control(name='Comment' required='' disabled ='' value= result[0].Comment)= result[0].Comment
+                        .form-group
+                            label.col-lg-2.control-label(for='eventDate') Desired date
+                            .col-lg-10
+                                input#datepicker.form-control(type='text',name='Date', required='' disabled ='' value= displayDate)
+                            label.col-lg-2.control-label(for='eventTime') Desired time
+                            .col-lg-10
+                                input#timepicker.form-control(type='text', name='Time', required='' disabled ='' value= displayTime)                                
+                        .form-group
+                          .col-lg-2.col-lg-offset-2
+                            button#editButton.btn.btn-primary.btn-lg.btn-block(type = 'button') Edit
+                          .col-lg-2
+                            button#deleteButton.btn.btn-danger.btn-lg.btn-block(type = 'button') Delete
+                        link(rel='stylesheet', href='/jqueryui/jquery-ui.css')
+                        link(rel='stylesheet', href='/jqueryui/jquery.timepicker.css')
+                        script(src='/jqueryui/jquery.timepicker.min.js')
+                        script(src='/jqueryui/jquery-ui.js')
+                        script(src='/appointment/AppointmentDetailScript.js')
+                        script( src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js')                        
+                        script.
+                            var result = !{ JSON.stringify(result[0])};
+                            var serverAddress = !{ JSON.stringify(serverAddress)};
+                            initScript();
+                            $( function() {
+                            $( "#timepicker" ).timepicker({timeFormat : "H:i:s"});
+                            } );
+                            $( function() {
+                            $( "#datepicker" ).datepicker({dateFormat: "yy-mm-dd"});
+                            } ); 
