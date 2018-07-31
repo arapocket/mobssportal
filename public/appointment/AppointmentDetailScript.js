@@ -4,8 +4,10 @@ function initScript() {
     var editButton = document.getElementById('editButton');
     var deleteButton = document.getElementById('deleteButton');
     var subject = document.getElementById('subject');
-    var descriptionField = document.getElementById('description');
+    var commentField = document.getElementById('comment');
     var selectedSubject = document.getElementById(result.Subject)
+    var date = document.getElementById('datepicker');
+    var time = document.getElementById('timepicker');
 
     try {
         selectedSubject.setAttribute('selected', '');
@@ -18,8 +20,10 @@ function initScript() {
         if (!editing) {
 
             try {
-                descriptionField.removeAttribute('disabled')
+                commentField.removeAttribute('disabled')
                 subject.removeAttribute('disabled');
+                date.removeAttribute('disabled');
+                time.removeAttribute('disabled');
                 editButton.innerText = 'Done';
                 editing = true;
             } catch (e) {
@@ -31,9 +35,11 @@ function initScript() {
 
             try {
                 editing = false;
-                descriptionField.disabled = '';
-                descriptionField.setAttribute('disabled', '')
+                commentField.disabled = '';
+                commentField.setAttribute('disabled', '')
                 subject.setAttribute('disabled', '');
+                date.setAttribute('disabled', '');
+                time.setAttribute('disabled', '');
                 editButton.innerText = 'Edit';
                 appointmentPut();
             } catch (e) {
@@ -90,7 +96,7 @@ function initScript() {
         var endpoint = serverAddress + '/appointment/' + result.AppointmentID
 
         console.log(subject.value);
-        console.log(descriptionField.value);
+        console.log(commentField.value);
 
         xhr.open("PUT", endpoint, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
@@ -98,8 +104,10 @@ function initScript() {
         xhr.send(JSON.stringify({
             'ClientUsername': result.ClientUsername,
             'Subject': subject.value,
-            'Comment': descriptionField.value,
-            'Status': result.Status
+            'Comment': commentField.value,
+            'Status': result.Status,
+            'Date':  date.value,
+            'Time': time.value
         }));
     }
 

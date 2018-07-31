@@ -1,0 +1,52 @@
+include mixins
+extends layout
+block content   
+
+            include navbar
+
+           
+            div
+                form.form-horizontal(method='post')
+                    fieldset
+                        legend Add user
+                        .form-group
+                            label.col-lg-2.control-label(for='ClientUsername') Client Username
+                            .col-lg-10
+                                input#inputEmail.form-control(type='text', placeholder='', name='ClientUsername', required='')
+                        .form-group
+                            label.col-lg-2.control-label(for='Password') Password
+                            .col-lg-10
+                                input#inputPassword.form-control(type='password',name='Password', required='')  
+                            label.col-lg-2.control-label(for='ContactLastName') Contact Last Name
+                            .col-lg-10
+                                input#inputPassword.form-control(type='text', name='ContactLastName', required='')
+                            label.col-lg-2.control-label(for='ContactFirstName') Contact First Name
+                            .col-lg-10
+                                input#inputPassword.form-control(type='text', placeholder='', name='ContactFirstName' required='')
+                            label.col-lg-2.control-label(for='ContactEmail') Contact Email                            
+                            .col-lg-10
+                                input#inputPassword.form-control(type='text', placeholder='', name='ContactEmail' required='')
+                            label.col-lg-2.control-label(for='ClientID') Client ID
+                            .col-lg-10
+                                input#inputPassword.form-control(type='text', placeholder='', name='ClientID' required='')
+                        .form-group
+                          label.col-lg-2.control-label(for='select') Privilege
+                          .col-lg-10
+                            select#selecttime.form-control(name='PrivLevel')
+                              option User
+                              option Administrator  
+                        .form-group
+                          label.col-lg-2.control-label(for='select') Status
+                          .col-lg-10
+                            select.form-control(multiple='', name='Status')
+                              option Active
+                              option Suspended
+                              option Inactive
+                        .form-group
+                          .col-lg-10.col-lg-offset-2                         
+                            button.btn.btn-primary.btn-lg(type='submit') Submit
+                       
+                        link(rel='stylesheet', href='/javascripts/jquery-ui.css')         
+                        link(rel='stylesheet', href='/javascripts/jquery.timepicker.css')
+                        
+                        

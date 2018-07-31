@@ -62,8 +62,10 @@ module.exports.renderAppointmentDetails = function (req, res){
       res.end();
     } else {
 
-      var displayDate = datetime.syncGetDateInDisplayFormat(result[0].EventDateTime);
-      var displayTime = datetime.syncGetTimeInDisplayFormat(result[0].EventDateTime);
+      console.log(result[0]);
+
+      var displayDate = datetime.syncGetDateInDisplayFormat(result[0].DesiredDateTime);
+      var displayTime = datetime.syncGetTimeInDisplayFormat(result[0].DesiredDateTime);
 
       res.render('AppointmentDetailView', {result, serverAddress, displayDate, displayTime});
     }

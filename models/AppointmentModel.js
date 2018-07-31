@@ -89,9 +89,12 @@ module.exports.putAppointment = function (id, Body, callback) {
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
+
+            var dateTime = Body.Date + ' ' + Body.Time;
+
             var connection = result;
             var orderID = CreateRandom.create();
-            var query = 'UPDATE appointment SET Subject = "' + Body.Subject + '", Comment = "' + Body.Comment + '", UpdateTime = "' + time + '" WHERE AppointmentID ="' + id + '" AND ClientUsername = "' + Body.ClientUsername + '";'
+            var query = 'UPDATE appointment SET Subject = "' + Body.Subject + '", Comment = "' + Body.Comment + '", UpdateTime = "' + time + '", DesiredDateTime = "' + dateTime + '" WHERE AppointmentID ="' + id + '" AND ClientUsername = "' + Body.ClientUsername + '";'
 
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
@@ -99,7 +102,8 @@ module.exports.putAppointment = function (id, Body, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the query');
+                    console.log('error with the putAppointment query');
+                    console.log(err);
                     connection.end();
                     callback(err, rows);
                 }

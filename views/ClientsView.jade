@@ -1,0 +1,31 @@
+include mixins
+extends layout
+block content   
+
+            include navbar
+
+            h3 Mobss Portal Users
+            br
+
+            div
+                table#pickle.table.table-hover.table-striped.table-bordered
+                    thead
+                        tr.primary 
+                            th
+                            th Client User                         
+                            th Client ID
+                            th Status
+                            th Privilege
+                            th Updated
+                    tbody
+                        -each result in results
+                            tr
+                                    td
+                                        a(href="/userModify/#{result.ClientUsername}")  Edit |
+                                        a(href="/userDelete/#{result.ClientUsername}")  Delete  
+                                    td=result.ClientUsername                                 
+                                    td=result.ClientID
+                                    td=result.Status
+                                    td=result.PrivLevel
+                                    td=result.UpdateTime
+           

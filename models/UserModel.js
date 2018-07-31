@@ -68,7 +68,7 @@ module.exports.authenticateUser = function (user, password, callback) {
 		} else {
 			//process the i/o after successful connect.  Connection object returned in callback
 			var connection = reslt;
-			var strSQL = 'select * from client where clientUsername="' + user + '"';
+			var strSQL = 'select * from client where ClientUsername="' + user + '"';
 			var query = connection.query(strSQL, function (err, result) {
 
 				if (err || result.length == 0) {

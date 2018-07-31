@@ -7,6 +7,7 @@ var PortalController = require('../controllers/PortalController');
 var IncidentController = require('../controllers/IncidentController');
 var SuggestionController = require('../controllers/SuggestionController');
 var AppointmentController = require('../controllers/AppointmentController');
+var UserController = require('../controllers/UserController');
 
 router.get('/', LoginController.renderHome);
 router.get('/portal', LoginController.renderPortal);
@@ -32,6 +33,14 @@ router.put('/appointment/:id', AppointmentController.putAppointment);
 router.delete('/appointment/:id/:username', AppointmentController.deleteAppointment)
 router.post('/appointment', AppointmentController.postAppointment);
 router.get('/appointmentlist', PortalController.renderAppointmentListView);
+
+router.get('/users', UserController.usersHome);
+router.get('/userAdd', UserController.userAdd);
+router.post('/userAdd', UserController.userAddToDb);
+router.get('/userModify/:userName', UserController.userGetOne);
+router.post('/userModify/:userName', UserController.userUpdateOne);
+router.get('/userDelete/:userName', UserController.userGetOneForDelete);
+router.post('/userDelete/:userName', UserController.userDeleteOne);
 
 
 router.get('/logout', function (req, res) {
