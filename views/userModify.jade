@@ -12,20 +12,25 @@ block content
                         .form-group
                             label.col-lg-2.control-label(for='ClientUsername') Client Username
                             .col-lg-10
-                                input#inputEmail.form-control(type='text', name='ClientUsername', value=results[0].ClientUsername, required='')
+                                input#inputUser.form-control(type='text', name='ClientUsername', value=results[0].ClientUsername, required='')
+                        .form-group
+                            label.col-lg-2.control-label(for='CompanyName') Company Name
+                            .col-lg-10
+                                input#inputCompany.form-control(type='text', placeholder='', name='CompanyName', required='')
+                        .form-group                                
+                            label.col-lg-2.control-label(for='ClientID') Client ID
+                            .col-lg-10
+                                input#inputID.form-control(type='text', placeholder='', name='ClientID', value=results[0].ClientID)
                         .form-group
                             label.col-lg-2.control-label(for='ContactLastName') Contact Last Name
                             .col-lg-10
-                                input#inputPassword.form-control(type='text', name='ContactLastName', required='', value=results[0].ContactLastName)
+                                input#inputLast.form-control(type='text', name='ContactLastName', required='', value=results[0].ContactLastName)
                             label.col-lg-2.control-label(for='ContactFirstName') Contact First Name
                             .col-lg-10
-                                input#inputPassword.form-control(type='text', placeholder='', name='ContactFirstName', value=results[0].ClientID)
+                                input#inputFirst.form-control(type='text', placeholder='', name='ContactFirstName', value=results[0].ContactFirstName)
                             label.col-lg-2.control-label(for='ContactEmail') Contact Email                            
                             .col-lg-10
-                                input#inputPassword.form-control(type='text', placeholder='', name='ContactEmail', value=results[0].ContactFirstName)
-                            label.col-lg-2.control-label(for='ClientID') Client ID
-                            .col-lg-10
-                                input#inputPassword.form-control(type='text', placeholder='', name='ClientID', value=results[0].ContactEmail)
+                                input#inputEmail.form-control(type='text', placeholder='', name='ContactEmail', value=results[0].ContactEmail)
                         .form-group
                           label.col-lg-2.control-label(for='select') Privilege
                           .col-lg-10

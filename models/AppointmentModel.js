@@ -11,7 +11,7 @@ module.exports.getAppointment = function (username, orderID, callback) {
         } else {
             var connection = result;
 
-            var query = 'SELECT * FROM appointment WHERE ClientUsername =  "' + username + '" AND AppointmentID = "' + orderID + '";'
+            var query = 'SELECT * FROM appointment WHERE AppointmentID = "' + orderID + '";'
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -61,9 +61,8 @@ module.exports.postAppointment = function (user, Body, callback) {
             var connection = result;
             var orderID = CreateRandom.create();
 
-            var dateTime = Body.Date + ' ' + Body.Time;
-            var queryFields = '(ClientUsername, AppointmentID, Subject, Comment, TimePosted, DesiredDateTime)';
-            var queryValues = '"' + user + '", "' + orderID + '", "' + Body.Subject + '", "' + Body.Comment + '", "' + time + '", "' + dateTime + '")';
+            var queryFields = '(ClientUsername, AppointmentID, Subject, Comment, TimePosted, DesiredDate, DesiredTime)';
+            var queryValues = '"' + user + '", "' + orderID + '", "' + Body.Subject + '", "' + Body.Comment + '", "' + time + '", "' + Body.DesiredDate + '", "' + Body.DesiredTime + '");';
             var query = 'INSERT INTO appointment ' + queryFields + ' VALUES (' + queryValues;
 
 
@@ -98,7 +97,7 @@ module.exports.putAppointment = function (id, Body, callback) {
 
             var connection = result;
             var orderID = CreateRandom.create();
-            var query = 'UPDATE appointment SET Subject = "' + Body.Subject + '", Comment = "' + Body.Comment + '", StatusNote = "' + Body.StatusNote + '", UpdateTime="' + time + '", DesiredDateTime = "' + dateTime + '" WHERE AppointmentID ="' + id + '" AND ClientUsername = "' + Body.ClientUsername + '";'
+            var query = 'UPDATE appointment SET Subject = "' + Body.Subject + '", Comment = "' + Body.Comment + '", Status = "' + Body.Status + '", StatusNote = "' + Body.StatusNote + '", UpdateTime="' + time + '", DesiredDate = "' + Body.Date + ', DesiredTime = "' + Body.Time + '" WHERE AppointmentID = "' + id + '";'
             console.log('logging query from putAppointment');
             console.log(query);
 

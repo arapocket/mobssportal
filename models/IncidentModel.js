@@ -11,7 +11,7 @@ module.exports.getIncident = function (username, orderID, callback) {
         } else {
             var connection = result;
 
-            var query = 'SELECT * FROM incident WHERE ClientUsername =  "' + username + '" AND IncidentID = "' + orderID + '";'
+            var query = 'SELECT * FROM incident WHERE  IncidentID = "' + orderID + '";'
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -92,7 +92,7 @@ module.exports.putIncident = function (id, Body, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = result;
             var orderID = CreateRandom.create();
-            var query = 'UPDATE incident SET Subject = "' + Body.Subject + '", Description = "' + Body.Description + '", UpdateTime = "' + time + '" WHERE IncidentID ="' + id + '" AND ClientUsername = "' + Body.ClientUsername + '";'
+            var query = 'UPDATE incident SET Subject = "' + Body.Subject + '", Description = "' + Body.Description + '", UpdateTime = "' + time + '" WHERE IncidentID ="' + id + '";'
 
             connection.query(query, function (err, rows, fields) {
                 if (!err) {

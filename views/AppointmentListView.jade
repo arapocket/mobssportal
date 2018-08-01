@@ -10,7 +10,8 @@ block content
 						tr.primary 
 							th
 							th Subject
-							th Desired Date/Time
+							th Desired Date
+							th Desired Time
 							th Time Posted
 							th Status
 					tbody
@@ -19,7 +20,8 @@ block content
 									td
 										a(href="/appointment/#{result.AppointmentID}")  View/Edit
 									td=result.Subject
-									td=result.DesiredDateTime
+									td=result.DesiredDate
+									td=result.DesiredTime
 									td=result.TimePosted
 									td=result.Status
 				script.

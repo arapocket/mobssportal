@@ -6,6 +6,8 @@ function initScript() {
     var subject = document.getElementById('subject');
     var commentField = document.getElementById('comment');
     var selectedSubject = document.getElementById(result.Subject)
+    var status = document.getElementById('status');
+    var statusNote = document.getElementById('statusNote');
     var date = document.getElementById('datepicker');
     var time = document.getElementById('timepicker');
 
@@ -24,6 +26,8 @@ function initScript() {
                 subject.removeAttribute('disabled');
                 date.removeAttribute('disabled');
                 time.removeAttribute('disabled');
+                status.removeAttribute('disabled');
+                statusNote.removeAttribute('disabled');
                 editButton.innerText = 'Done';
                 editing = true;
             } catch (e) {
@@ -40,6 +44,8 @@ function initScript() {
                 subject.setAttribute('disabled', '');
                 date.setAttribute('disabled', '');
                 time.setAttribute('disabled', '');
+                status.setAttribute('disabled', '');
+                statusNote.setAttribute('disabled', '');
                 editButton.innerText = 'Edit';
                 appointmentPut();
             } catch (e) {
@@ -106,7 +112,8 @@ function initScript() {
             'CompanyName': result.CompanyName,
             'Subject': subject.value,
             'Comment': commentField.value,
-            'Status': result.Status,
+            'Status': status.value,
+            'StatusNote': statusNote.value,
             'Date':  date.value,
             'Time': time.value
         }));

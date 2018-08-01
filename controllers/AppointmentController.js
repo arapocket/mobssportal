@@ -64,13 +64,23 @@ module.exports.renderAppointmentDetails = function (req, res) {
 
       console.log(result[0]);
 
-      var displayDate = datetime.syncGetDateInDisplayFormat(result[0].DesiredDateTime);
-      var displayTime = datetime.syncGetTimeInDisplayFormat(result[0].DesiredDateTime);
+      datePromise = Promise.resolve(datetime.syncGetDateInDisplayFormat(JSON.stringify(result[0].DesiredDate)));
+      timePromise = Promise.resolve(datetime.syncGetTimeInDisplayFormat(JSON.stringify(result[0].DesiredTime)));
 
-      if (sess.userType == '2') {
-        res.render('AppointmentDetailViewAdmin', { result, serverAddress, displayDate, displayTime });
-      } else
-        res.render('AppointmentDetailView', { result, serverAddress, displayDate, displayTime });
+      datePromise.then(function(displayDate){
+        timePromise.then(function(displayTime) {
+
+          console.log('logging display date and time');
+          console.log(displayDate);
+          console.log(displayTime);
+
+          if (sess.userType == '2') {
+            res.render('AppointmentDetailViewAdmin', { result, serverAddress, displayDate, displayTime });
+          } else {
+            res.render('AppointmentDetailView', { result, serverAddress, displayDate, displayTime });
+          }  
+        })
+      })
     }
   })
 

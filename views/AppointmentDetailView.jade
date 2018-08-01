@@ -36,10 +36,10 @@ block content
                         .form-group
                             label.col-lg-2.control-label(for='eventDate') Desired date
                             .col-lg-10
-                                input#datepicker.form-control(type='text',name='Date', required='' disabled ='' value= displayDate)
+                                input#datepicker.form-control(type='text',name='Date', required='' disabled ='' value = result[0].DesiredDate)
                             label.col-lg-2.control-label(for='eventTime') Desired time
                             .col-lg-10
-                                input#timepicker.form-control(type='text', name='Time', required='' disabled ='' value= displayTime)                                
+                                input#timepicker.form-control(type='text', name='Time', required='' disabled ='' value = result[0].DesiredTime)                                
                         .form-group
                           .col-lg-2.col-lg-offset-2
                             button#editButton.btn.btn-primary.btn-lg.btn-block(type = 'button') Edit
