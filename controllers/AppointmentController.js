@@ -39,7 +39,7 @@ module.exports.getAllAppointments = function (req, res) {
   sess = req.session;
   sess.error = null;
 
-  AppointmentModel.getAllAppointments(sess.username, function (err, result) {
+  AppointmentModel.getAllAppointments(function (err, result) {
     if (err) {
       res.json(err);
     } else {
@@ -52,11 +52,12 @@ module.exports.getAllAppointments = function (req, res) {
 module.exports.renderAppointmentDetails = function (req, res) {
   sess = req.session;
   sess.error = null;
+  var userType = sess.userType;
 
   var serverAddress = process.env.SERVER_ADDRESS;
   console.log(serverAddress);
 
-  AppointmentModel.getAppointment(sess.username, req.params.id, function (err, result) {
+  AppointmentModel.getAppointment(req.params.id, function (err, result) {
     if (err) {
       console.log(err);
       res.end();
@@ -74,11 +75,7 @@ module.exports.renderAppointmentDetails = function (req, res) {
           console.log(displayDate);
           console.log(displayTime);
 
-          if (sess.userType == '2') {
-            res.render('AppointmentDetailViewAdmin', { result, serverAddress, displayDate, displayTime });
-          } else {
-            res.render('AppointmentDetailView', { result, serverAddress, displayDate, displayTime });
-          }  
+          res.render('AppointmentDetailView', { result, serverAddress, displayDate, displayTime, userType }); 
         })
       })
     }
@@ -92,7 +89,7 @@ module.exports.deleteAppointment = function (req, res) {
 
   console.log(req.params);
 
-  AppointmentModel.deleteAppointment(req.params.id, req.params.username, function (err, result) {
+  AppointmentModel.deleteAppointment(req.params.id, function (err, result) {
     if (err) {
       console.log(err);
       res.json(err);

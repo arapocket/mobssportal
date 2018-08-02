@@ -3,7 +3,7 @@ var datetime = require('../controllers/datetime');
 var time = datetime.syncCurrentDateTimeforDB();
 var CreateRandom = require('../CreateRandom');
 
-module.exports.getSuggestion = function (username, orderID, callback) {
+module.exports.getSuggestion = function (orderID, callback) {
     db.createConnection(function (err, result) {
         if (err) {
             console.log('Error connecting to db');
@@ -11,7 +11,7 @@ module.exports.getSuggestion = function (username, orderID, callback) {
         } else {
             var connection = result;
 
-            var query = 'SELECT * FROM suggestion WHERE ClientUsername =  "' + username + '" AND SuggestionID = "' + orderID + '";'
+            var query = 'SELECT * FROM suggestion WHERE SuggestionID = "' + orderID + '";'
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -26,7 +26,7 @@ module.exports.getSuggestion = function (username, orderID, callback) {
     })
 }
 
-module.exports.deleteSuggestion = function (orderID, username, callback){
+module.exports.deleteSuggestion = function (orderID, callback){
     db.createConnection(function (err, result){
         if (err){
             console.log('Error connecting to db');
@@ -34,7 +34,7 @@ module.exports.deleteSuggestion = function (orderID, username, callback){
         } else {
             var connection = result;
 
-            var query = 'DELETE FROM suggestion WHERE ClientUsername =  "' + username + '" AND SuggestionID = "' + orderID + '";'
+            var query = 'DELETE FROM suggestion WHERE SuggestionID = "' + orderID + '";'
             console.log(query);
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
@@ -109,7 +109,7 @@ module.exports.putSuggestion = function (id, Body, callback) {
     });
 }
 
-module.exports.getAllSuggestions = function (username, callback) {
+module.exports.getAllSuggestions = function (callback) {
 
     db.createConnection(function (err, result) {
         if (err) {
@@ -117,8 +117,7 @@ module.exports.getAllSuggestions = function (username, callback) {
             callback(err, null);
         } else {
             var connection = result;
-            var queryField = 'ClientUsername';
-            var query = 'SELECT * FROM suggestion WHERE ' + queryField + ' = "' + username + '";'
+            var query = 'SELECT * FROM suggestion'
 
             connection.query(query, function (err, rows, fields) {
                 if (!err) {

@@ -3,7 +3,7 @@ var datetime = require('../controllers/datetime');
 var time = datetime.syncCurrentDateTimeforDB();
 var CreateRandom = require('../CreateRandom');
 
-module.exports.getIncident = function (username, orderID, callback) {
+module.exports.getIncident = function (orderID, callback) {
     db.createConnection(function (err, result) {
         if (err) {
             console.log('Error connecting to db');
@@ -26,7 +26,7 @@ module.exports.getIncident = function (username, orderID, callback) {
     })
 }
 
-module.exports.deleteIncident = function (orderID, username, callback){
+module.exports.deleteIncident = function (orderID, callback){
     db.createConnection(function (err, result){
         if (err){
             console.log('Error connecting to db');
@@ -34,7 +34,7 @@ module.exports.deleteIncident = function (orderID, username, callback){
         } else {
             var connection = result;
 
-            var query = 'DELETE FROM incident WHERE ClientUsername =  "' + username + '" AND IncidentID = "' + orderID + '";'
+            var query = 'DELETE FROM incident WHERE  IncidentID = "' + orderID + '";'
             console.log(query);
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
@@ -109,7 +109,7 @@ module.exports.putIncident = function (id, Body, callback) {
     });
 }
 
-module.exports.getAllIncidents = function (username, callback) {
+module.exports.getAllIncidents = function (callback) {
 
     db.createConnection(function (err, result) {
         if (err) {
@@ -117,8 +117,7 @@ module.exports.getAllIncidents = function (username, callback) {
             callback(err, null);
         } else {
             var connection = result;
-            var queryField = 'ClientUsername';
-            var query = 'SELECT * FROM incident WHERE ' + queryField + ' = "' + username + '";'
+            var query = 'SELECT * FROM incident;'
 
             connection.query(query, function (err, rows, fields) {
                 if (!err) {

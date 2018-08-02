@@ -38,8 +38,9 @@ module.exports.putIncident = function (req, res) {
 module.exports.getAllIncidents =  function (req, res){
   sess = req.session;
   sess.error = null;
+  
 
-  IncidentModel.getAllIncidents(sess.username, function (err, result) {
+  IncidentModel.getAllIncidents(function (err, result) {
     if (err) {
       res.json(err);
     } else {
@@ -52,16 +53,17 @@ module.exports.getAllIncidents =  function (req, res){
 module.exports.renderIncidentDetails = function (req, res){
   sess = req.session;
   sess.error = null;
-
+  var userType = sess.userType;
+  
   var serverAddress = process.env.SERVER_ADDRESS;
   console.log(serverAddress);
 
-  IncidentModel.getIncident(sess.username, req.params.id, function (err, result){
+  IncidentModel.getIncident(req.params.id, function (err, result){
     if (err){
       console.log(err);
       res.end();
     } else {
-      res.render('IncidentDetailView', {result, serverAddress});
+      res.render('IncidentDetailView', {result, serverAddress, userType});
     }
   })
 
@@ -73,7 +75,7 @@ module.exports.deleteIncident = function (req, res){
 
   console.log(req.params);
 
-  IncidentModel.deleteIncident(req.params.id, req.params.username, function (err, result){
+  IncidentModel.deleteIncident(req.params.id, function (err, result){
     if (err){
       console.log(err);
       res.json(err);

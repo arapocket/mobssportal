@@ -22,8 +22,8 @@ module.exports.usersHome = function (req, res) {
   sess.rptError = null;
 
   // don't let nameless people view the dashboard, redirect them back to the homepage
-      if (typeof sess.username == 'undefined') res.redirect('/');
-      else {
+  if (typeof sess.username == 'undefined') res.redirect('/');
+  else {
 
     db.createConnection(function (err, reslt) {
       if (err) {
@@ -41,7 +41,7 @@ module.exports.usersHome = function (req, res) {
            * Only show the client screen if user has privilege
            * 
            */
-          if (sess.userType == '2') {
+          if (sess.userType == 2) {
             res.render('ClientsView', { title: 'Command Center', username: req.session.username, results });
           } else {
             res.render('UnauthorizedView', { title: 'Command Center' });
@@ -50,7 +50,7 @@ module.exports.usersHome = function (req, res) {
         });
       }
     });
-      }
+  }
 };
 
 ///////////////////////////////////
@@ -58,15 +58,15 @@ module.exports.usersHome = function (req, res) {
 ///////////////////////////////////
 exports.userAdd = function (req, res) {
   sess = req.session;
-      // don't let nameless people view the dashboard, redirect them back to the homepage
-      if (typeof sess.username == 'undefined') res.redirect('/');
-      else {
+  // don't let nameless people view the dashboard, redirect them back to the homepage
+  if (typeof sess.username == 'undefined') res.redirect('/');
+  else {
 
-        var name = req.query.name;
-        /**
-         * Only show the client screen if user has privilege
-         */
-    if (sess.userType == '2') {
+    var name = req.query.name;
+    /**
+     * Only show the client screen if user has privilege
+     */
+    if (sess.userType == 2) {
       res.render('userAdd', { title: 'Command Center' });
     } else {
       res.render('UnauthorizedView', { title: 'Command Center' });
@@ -166,9 +166,9 @@ module.exports.userAddToDb = function (req, res) {
 module.exports.userGetOne = function (req, res) {
 
   sess = req.session;
-      // don't let nameless people view the dashboard, redirect them back to the homepage
-      if (typeof sess.username == 'undefined') res.redirect('/');
-      else {
+  // don't let nameless people view the dashboard, redirect them back to the homepage
+  if (typeof sess.username == 'undefined') res.redirect('/');
+  else {
 
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
@@ -210,7 +210,7 @@ module.exports.userGetOne = function (req, res) {
 ////////////////////////////////////////////////
 exports.userUpdateOne = function (req, res) {
   sess = req.session;
-      var name = req.query.name;
+  var name = req.query.name;
 
   //get a connection using the common handler in models/db.js
   db.createConnection(function (err, reslt) {
@@ -302,9 +302,9 @@ exports.userUpdateOne = function (req, res) {
 module.exports.userGetOneForDelete = function (req, res) {
 
   sess = req.session;
-      // don't let nameless people view the dashboard, redirect them back to the homepage
-      if (typeof sess.username == 'undefined') res.redirect('/');
-      else {
+  // don't let nameless people view the dashboard, redirect them back to the homepage
+  if (typeof sess.username == 'undefined') res.redirect('/');
+  else {
 
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
@@ -342,9 +342,9 @@ module.exports.userGetOneForDelete = function (req, res) {
 module.exports.userDeleteOne = function (req, res) {
 
   sess = req.session;
-      // don't let nameless people view the dashboard, redirect them back to the homepage
-      if (typeof sess.username == 'undefined') res.redirect('/');
-      else {
+  // don't let nameless people view the dashboard, redirect them back to the homepage
+  if (typeof sess.username == 'undefined') res.redirect('/');
+  else {
 
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {

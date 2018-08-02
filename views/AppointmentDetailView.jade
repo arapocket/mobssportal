@@ -3,7 +3,6 @@ extends layout
 block content   
 
             include navbar
-
             div
                 form.form-horizontal(method='put')
                     fieldset
@@ -15,11 +14,15 @@ block content
                         .form-group
                             label.col-lg-2.control-label(for='status') Status
                             .col-lg-10  
-                                input#status.form-control(type='text', value =result[0].Status, name='status' required='' disabled = '')
+                                select#status.form-control(name='Subject' disabled = '' ) 
+                                    option(id = 'Open' value='Open') Open
+                                    option(id = 'Viewed' value='Viewed') Viewed
+                                    option(id = 'In Progess' value='In Progess') In Progess
+                                    option(id = 'Complete' value='Complete') Complete
                         .form-group
-                            label.col-lg-2.control-label(for='statusNote') Notes
+                            label.col-lg-2.control-label(for='StatusNote') Notes
                             .col-lg-10
-                                textarea#statusNote.form-control(name='statusNote' required='' disabled ='' value= result[0].StatusNote)= result[0].StatusNote                                
+                                textarea#statusNote.form-control(name='StatusNote' required='' disabled ='' value= result[0].StatusNote)= result[0].StatusNote
                         .form-group(style = 'display: block')
                             label.col-lg-2.control-label(for='subject') Appointment Subject
                             .col-lg-10
@@ -36,10 +39,10 @@ block content
                         .form-group
                             label.col-lg-2.control-label(for='eventDate') Desired date
                             .col-lg-10
-                                input#datepicker.form-control(type='text',name='Date', required='' disabled ='' value = result[0].DesiredDate)
+                                input#datepicker.form-control(type='text',name='Date', required='' disabled ='' value= result[0].DesiredDate)
                             label.col-lg-2.control-label(for='eventTime') Desired time
                             .col-lg-10
-                                input#timepicker.form-control(type='text', name='Time', required='' disabled ='' value = result[0].DesiredTime)                                
+                                input#timepicker.form-control(type='text', name='Time', required='' disabled ='' value= result[0].DesiredTime)                                
                         .form-group
                           .col-lg-2.col-lg-offset-2
                             button#editButton.btn.btn-primary.btn-lg.btn-block(type = 'button') Edit
@@ -53,6 +56,7 @@ block content
                         script( src='https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js')                        
                         script.
                             var result = !{ JSON.stringify(result[0])};
+                            var userType = !{ JSON.stringify(userType)};
                             var serverAddress = !{ JSON.stringify(serverAddress)};
                             initScript();
                             $( function() {

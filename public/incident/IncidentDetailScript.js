@@ -1,11 +1,15 @@
 function initScript() {
     editing = false;
 
+    console.log('userType: ' + userType);
+
     var editButton = document.getElementById('editButton');
     var deleteButton = document.getElementById('deleteButton');
     var subject = document.getElementById('subject');
-    var descriptionField = document.getElementById('description');
+    var commentField = document.getElementById('description');
     var selectedSubject = document.getElementById(result.Subject)
+    var status = document.getElementById('status');
+    var statusNote = document.getElementById('statusNote');
 
     try {
         selectedSubject.setAttribute('selected', '');
@@ -18,21 +22,31 @@ function initScript() {
         if (!editing) {
 
             try {
-                descriptionField.removeAttribute('disabled')
+                commentField.removeAttribute('disabled')
                 subject.removeAttribute('disabled');
+
+                if (userType == 2) {
+                    status.removeAttribute('disabled');
+                    statusNote.removeAttribute('disabled');
+                }
+
+
                 editButton.innerText = 'Done';
                 editing = true;
             } catch (e) {
                 console.log(e);
             }
 
+
         } else {
 
             try {
                 editing = false;
-                descriptionField.disabled = '';
-                descriptionField.setAttribute('disabled', '')
+                commentField.disabled = '';
+                commentField.setAttribute('disabled', '')
                 subject.setAttribute('disabled', '');
+                status.setAttribute('disabled', '');
+                statusNote.setAttribute('disabled', '');
                 editButton.innerText = 'Edit';
                 incidentPut();
             } catch (e) {
@@ -60,7 +74,7 @@ function initScript() {
                     }
                 }
 
-                var endpoint = serverAddress + '/incident/' + result.IncidentID + '/' + result.ClientUsername
+                var endpoint = serverAddress + '/incident/' + result.IncidentID
                 console.log(endpoint)
                 xhr.open("DELETE", endpoint, true);
                 xhr.setRequestHeader('Content-Type', 'application/json');
@@ -89,16 +103,18 @@ function initScript() {
         var endpoint = serverAddress + '/incident/' + result.IncidentID
 
         console.log(subject.value);
-        console.log(descriptionField.value);
+        console.log(commentField.value);
 
         xhr.open("PUT", endpoint, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('Access-Control-Allow-Origin', serverAddress);
         xhr.send(JSON.stringify({
             'ClientUsername': result.ClientUsername,
+            'CompanyName': result.CompanyName,
             'Subject': subject.value,
-            'Description': descriptionField.value,
-            'Status': result.Status
+            'Description': commentField.value,
+            'Status': status.value,
+            'StatusNote': statusNote.value
         }));
     }
 

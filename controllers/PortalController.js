@@ -24,7 +24,7 @@ exports.renderIncidentListView = function (req, res) {
 
     if (typeof sess.username == 'undefined') res.redirect('/');
     else {
-        IncidentModel.getAllIncidents(sess.username, function (err, getAllIncidentsResult) {
+        IncidentModel.getAllIncidents(function (err, getAllIncidentsResult) {
             if (err) {
                 console.log(err);
                 res.end();
@@ -56,7 +56,7 @@ exports.renderSuggestionListView = function (req, res) {
 
     if (typeof sess.username == 'undefined') res.redirect('/');
     else {
-        SuggestionModel.getAllSuggestions(sess.username, function (err, getAllSuggestionsResult) {
+        SuggestionModel.getAllSuggestions(function (err, getAllSuggestionsResult) {
             if (err) {
                 console.log(err);
                 res.end();
@@ -88,7 +88,7 @@ exports.renderAppointmentListView = function (req, res) {
 
     if (typeof sess.username == 'undefined') res.redirect('/');
     else {
-        AppointmentModel.getAllAppointments(sess.username, function (err, getAllAppointmentsResult) {
+        AppointmentModel.getAllAppointments(function (err, getAllAppointmentsResult) {
             if (err) {
                 console.log(err);
                 res.end();

@@ -1,13 +1,23 @@
 function initScript() {
     editing = false;
 
+    console.log('userType: ' + userType);
+
     var editButton = document.getElementById('editButton');
     var deleteButton = document.getElementById('deleteButton');
     var subject = document.getElementById('subject');
     var commentField = document.getElementById('comment');
     var selectedSubject = document.getElementById(result.Subject)
+    var status = document.getElementById('status');
+    var statusNote = document.getElementById('statusNote');
     var date = document.getElementById('datepicker');
     var time = document.getElementById('timepicker');
+
+
+    console.log('logging date and time:');
+    console.log(date.value);
+    console.log(time.value);
+
 
     try {
         selectedSubject.setAttribute('selected', '');
@@ -24,6 +34,14 @@ function initScript() {
                 subject.removeAttribute('disabled');
                 date.removeAttribute('disabled');
                 time.removeAttribute('disabled');
+                
+
+                if (userType == 2) {
+                    status.removeAttribute('disabled');
+                    statusNote.removeAttribute('disabled');
+                }
+
+
                 editButton.innerText = 'Done';
                 editing = true;
             } catch (e) {
@@ -40,6 +58,8 @@ function initScript() {
                 subject.setAttribute('disabled', '');
                 date.setAttribute('disabled', '');
                 time.setAttribute('disabled', '');
+                status.setAttribute('disabled', '');
+                statusNote.setAttribute('disabled', '');
                 editButton.innerText = 'Edit';
                 appointmentPut();
             } catch (e) {
@@ -67,7 +87,7 @@ function initScript() {
                     }
                 }
 
-                var endpoint = serverAddress + '/appointment/' + result.AppointmentID + '/' + result.ClientUsername
+                var endpoint = serverAddress + '/appointment/' + result.AppointmentID
                 console.log(endpoint)
                 xhr.open("DELETE", endpoint, true);
                 xhr.setRequestHeader('Content-Type', 'application/json');
@@ -106,8 +126,9 @@ function initScript() {
             'CompanyName': result.CompanyName,
             'Subject': subject.value,
             'Comment': commentField.value,
-            'Status': result.Status,
-            'Date':  date.value,
+            'Status': status.value,
+            'StatusNote': statusNote.value,
+            'Date': date.value,
             'Time': time.value
         }));
     }

@@ -16,31 +16,31 @@ router.post('/', LoginController.renderPortal);
 router.get('/incident', PortalController.renderIncidentView);
 router.get('/incident/:id', IncidentController.renderIncidentDetails);
 router.put('/incident/:id', IncidentController.putIncident);
-router.delete('/incident/:id/:username', IncidentController.deleteIncident)
+router.delete('/incident/:id', IncidentController.deleteIncident)
 router.post('/incident', IncidentController.postIncident);
 router.get('/incidentlist', PortalController.renderIncidentListView);
 
 router.get('/suggestion', PortalController.renderSuggestionView);
 router.get('/suggestion/:id', SuggestionController.renderSuggestionDetails);
 router.put('/suggestion/:id', SuggestionController.putSuggestion);
-router.delete('/suggestion/:id/:username', SuggestionController.deleteSuggestion)
+router.delete('/suggestion/:id', SuggestionController.deleteSuggestion)
 router.post('/suggestion', SuggestionController.postSuggestion);
 router.get('/suggestionlist', PortalController.renderSuggestionListView);
 
 router.get('/appointment', PortalController.renderAppointmentView);
 router.get('/appointment/:id', AppointmentController.renderAppointmentDetails);
 router.put('/appointment/:id', AppointmentController.putAppointment);
-router.delete('/appointment/:id/:username', AppointmentController.deleteAppointment)
+router.delete('/appointment/:id', AppointmentController.deleteAppointment)
 router.post('/appointment', AppointmentController.postAppointment);
 router.get('/appointmentlist', PortalController.renderAppointmentListView);
 
 router.get('/users', UserController.usersHome);
 router.get('/userAdd', UserController.userAdd);
 router.post('/userAdd', UserController.userAddToDb);
-router.get('/userModify/:userName', UserController.userGetOne);
-router.post('/userModify/:userName', UserController.userUpdateOne);
-router.get('/userDelete/:userName', UserController.userGetOneForDelete);
-router.post('/userDelete/:userName', UserController.userDeleteOne);
+router.get('/userModify', UserController.userGetOne);
+router.post('/userModify', UserController.userUpdateOne);
+router.get('/userDelete', UserController.userGetOneForDelete);
+router.post('/userDelete', UserController.userDeleteOne);
 
 
 router.get('/logout', function (req, res) {

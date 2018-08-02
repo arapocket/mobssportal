@@ -38,7 +38,7 @@ module.exports.getAllSuggestions = function (req, res) {
   sess = req.session;
   sess.error = null;
 
-  SuggestionModel.getAllSuggestions(sess.username, function (err, result) {
+  SuggestionModel.getAllSuggestions(function (err, result) {
     if (err) {
       res.json(err);
     } else {
@@ -51,16 +51,17 @@ module.exports.getAllSuggestions = function (req, res) {
 module.exports.renderSuggestionDetails = function (req, res) {
   sess = req.session;
   sess.error = null;
+  var userType = sess.userType;
 
   var serverAddress = process.env.SERVER_ADDRESS;
   console.log(serverAddress);
 
-  SuggestionModel.getSuggestion(sess.username, req.params.id, function (err, result) {
+  SuggestionModel.getSuggestion(req.params.id, function (err, result) {
     if (err) {
       console.log(err);
       res.end();
     } else {
-      res.render('SuggestionDetailView', { result, serverAddress });
+      res.render('SuggestionDetailView', { result, serverAddress, userType });
     }
   })
 
@@ -72,7 +73,7 @@ module.exports.deleteSuggestion = function (req, res) {
 
   console.log(req.params);
 
-  SuggestionModel.deleteSuggestion(req.params.id, req.params.username, function (err, result) {
+  SuggestionModel.deleteSuggestion(req.params.id, function (err, result) {
     if (err) {
       console.log(err);
       res.json(err);
