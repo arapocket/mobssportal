@@ -68,14 +68,14 @@ module.exports.renderAppointmentDetails = function (req, res) {
       datePromise = Promise.resolve(datetime.syncGetDateInDisplayFormat(JSON.stringify(result[0].DesiredDate)));
       timePromise = Promise.resolve(datetime.syncGetTimeInDisplayFormat(JSON.stringify(result[0].DesiredTime)));
 
-      datePromise.then(function(displayDate){
-        timePromise.then(function(displayTime) {
+      datePromise.then(function (displayDate) {
+        timePromise.then(function (displayTime) {
 
           console.log('logging display date and time');
           console.log(displayDate);
           console.log(displayTime);
 
-          res.render('AppointmentDetailView', { result, serverAddress, displayDate, displayTime, userType }); 
+          res.render('AppointmentDetailView', { result, serverAddress, displayDate, displayTime, userType });
         })
       })
     }

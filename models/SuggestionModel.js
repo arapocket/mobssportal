@@ -92,8 +92,10 @@ module.exports.putSuggestion = function (id, Body, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = result;
             var orderID = CreateRandom.create();
-            var query = 'UPDATE suggestion SET Subject = "' + Body.Subject + '", Description = "' + Body.Description + '", UpdateTime = "' + time + '" WHERE SuggestionID ="' + id + '";'
+            var query = 'UPDATE suggestion SET Subject = "' + Body.Subject + '", Description = "' + Body.Description + '", Status = "' + Body.Status + '", StatusNote = "' + Body.StatusNote +  '", UpdateTime = "' + time + '" WHERE SuggestionID ="' + id + '";'
 
+            console.log(query);
+            
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
                     connection.end();

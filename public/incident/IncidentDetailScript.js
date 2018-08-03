@@ -6,7 +6,7 @@ function initScript() {
     var editButton = document.getElementById('editButton');
     var deleteButton = document.getElementById('deleteButton');
     var subject = document.getElementById('subject');
-    var commentField = document.getElementById('description');
+    var descriptionField = document.getElementById('description');
     var selectedSubject = document.getElementById(result.Subject)
     var status = document.getElementById('status');
     var statusNote = document.getElementById('statusNote');
@@ -22,7 +22,7 @@ function initScript() {
         if (!editing) {
 
             try {
-                commentField.removeAttribute('disabled')
+                descriptionField.removeAttribute('disabled')
                 subject.removeAttribute('disabled');
 
                 if (userType == 2) {
@@ -42,8 +42,8 @@ function initScript() {
 
             try {
                 editing = false;
-                commentField.disabled = '';
-                commentField.setAttribute('disabled', '')
+                descriptionField.disabled = '';
+                descriptionField.setAttribute('disabled', '')
                 subject.setAttribute('disabled', '');
                 status.setAttribute('disabled', '');
                 statusNote.setAttribute('disabled', '');
@@ -103,7 +103,7 @@ function initScript() {
         var endpoint = serverAddress + '/incident/' + result.IncidentID
 
         console.log(subject.value);
-        console.log(commentField.value);
+        console.log(descriptionField.value);
 
         xhr.open("PUT", endpoint, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
@@ -112,7 +112,7 @@ function initScript() {
             'ClientUsername': result.ClientUsername,
             'CompanyName': result.CompanyName,
             'Subject': subject.value,
-            'Description': commentField.value,
+            'Description': descriptionField.value,
             'Status': status.value,
             'StatusNote': statusNote.value
         }));
